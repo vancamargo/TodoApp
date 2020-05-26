@@ -13,15 +13,15 @@ namespace Todo.Domain.Commands
         {
 
         }
-        public CreateTodoCommand(string title, DateTime dateTime, string user)
+        public CreateTodoCommand(string title, DateTime date, string user)
         {
             Title = title;
-            DateTime = dateTime;
+            Date = date;
             User = user;
         }
 
         public string Title { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
         public string User { get; set; }
 
         public void Validate()

@@ -10,13 +10,13 @@ namespace Todo.Domain.Entities
         {
             Title = title;
             Done = false;
-            DateTime = dateTime;
+            Date = dateTime;
             User = user;
         }
 
         public string Title { get; set; }
         public bool Done { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
         public string User { get; set; }
 
         public void MarkAsDone()

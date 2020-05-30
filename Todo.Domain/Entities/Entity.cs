@@ -11,6 +11,7 @@ namespace Todo.Domain.Entities
             Id = Guid.NewGuid(); ;
         }
 
+       
         public Guid Id { get;private set; }
 
         public bool Equals(Entity other)

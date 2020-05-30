@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Todo.Domain.Handlers;
 using Todo.Domain.Infra;
+using Todo.Domain.Infra.Resitories;
 using Todo.Domain.Repositories;
 
 namespace Todo.Domaim.Api
@@ -31,7 +32,8 @@ namespace Todo.Domaim.Api
         {
             services.AddControllers();
             services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
-           /// services.AddTransient<ITodoRepository, TodoRepository>();
+           
+            services.AddTransient<ITodoRepository, TodoRepository>();
             services.AddTransient<TodoHandler, TodoHandler>();
 
         }
@@ -47,6 +49,11 @@ namespace Todo.Domaim.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
 
             app.UseAuthorization();
 

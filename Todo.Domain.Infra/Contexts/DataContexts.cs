@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using Todo.Domain.Entities;
 
-
-namespace Todo.Domain.Infra
+namespace Todo.Domain.Infra.Contexts
 {
-    public class DataContext :DbContext
+    public class DataContexts : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        public DataContexts(DbContextOptions<DataContexts> options)
+            : base(options)
         {
-
         }
 
         public DbSet<TodoItem> Todos { get; set; }

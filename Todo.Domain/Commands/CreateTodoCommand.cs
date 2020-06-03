@@ -29,7 +29,7 @@ namespace Todo.Domain.Commands
             AddNotifications(new Contract()
                 .Requires()
                 .HasMinLen(Title, 3, "Title", "Por favor, descreva melhor sua tarefa")
-                .HasMaxLen(User, 6, "User", "Usuario inválido")
+                .HasMinLen(User, 6, "User", "Usuário inválido!")
                 );
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Todo.Domain.Entities;
+using Todo.Domain.Infra.Contexts;
 using Todo.Domain.Queries;
 using Todo.Domain.Repositories;
 
@@ -11,9 +12,9 @@ namespace Todo.Domain.Infra.Resitories
 {
     public class TodoRepository : ITodoRepository
     {
-        private readonly DataContext _context;
+        private readonly DataContexts _context;
 
-        public TodoRepository(DataContext context)
+        public TodoRepository(DataContexts context)
         {
             _context = context;
         }
@@ -26,9 +27,9 @@ namespace Todo.Domain.Infra.Resitories
         public IEnumerable<TodoItem> GetAll(string user)
         {
             return _context.Todos
-                .AsNoTracking()
-                .Where(TodoQueries.GetAll(user))
-                .OrderBy(x => x.Date);
+               .AsNoTracking()
+               .Where(TodoQueries.GetAll(user))
+               .OrderBy(x => x.Date);
         }
 
         public IEnumerable<TodoItem> GetAllDone(string user)

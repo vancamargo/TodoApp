@@ -25,27 +25,19 @@ namespace Todo.Domain.Handlers
         }
         public ICommandResult Handle(CreateTodoCommand command)
         {
-            //fail fast validation
+            // Fail Fast Validation
             command.Validate();
             if (command.Invalid)
-                return new GenericCommandResult(
-                    false,
-                    "Ops, parece que sua tarefa está errada!",
-                    command.Notifications
-                    );
-            //criar um todo
-            //salvar um todo no banco
-            // notificar o usuario
-            //gerar o todoITem
-            var todo = new TodoItem(command.Title, command.Date, command.User);
-            //salvar no banco
+                return new GenericCommandResult(false, "Ops, parece que sua tarefa está errada!", command.Notifications);
 
+            // Gera o TodoItem
+            var todo = new TodoItem(command.Title, command.Date, command.User );
+
+            // Salva no banco
             _repository.Create(todo);
-            return new GenericCommandResult(
-                   true,
-                   "Tarefa salva",
-                   command.Notifications
-                   );
+
+            // Retorna o resultado
+            return new GenericCommandResult(true, "Tarefa salva", todo);
 
         }
 

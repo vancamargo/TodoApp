@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Todo.Domain.Handlers;
 using Todo.Domain.Infra;
+using Todo.Domain.Infra.Contexts;
 using Todo.Domain.Infra.Resitories;
 using Todo.Domain.Repositories;
 
@@ -31,8 +32,8 @@ namespace Todo.Domaim.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
-           
+            // services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddDbContext<DataContexts>(opt => opt.UseSqlServer(Configuration.GetConnectionString("UCASAppDatabase")));
             services.AddTransient<ITodoRepository, TodoRepository>();
             services.AddTransient<TodoHandler, TodoHandler>();
 
